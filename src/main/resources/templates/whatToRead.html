@@ -139,7 +139,7 @@ position: absolute;
   </tr>
 
 <tr th:each="b : ${book}">
-  <a th:href="@{/BooksPDF/{name}.pdf(name=${b.name})}" target="_blank">
+  <a th:href="@{/BooksPDF/{name}.pdf(name=${b.id})}" target="_blank">
     <p><img width="100" height="100" src="/static/bookPng.png"></p>
   </a>
   <th>Название:</th>
