@@ -6,7 +6,7 @@ plugins {
 
 group = "ru.kpfu.itis"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_16
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 tasks.jar {
     enabled = false
@@ -42,6 +42,24 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    //spring
+    implementation ("org.springframework.boot:spring-boot-starter-mail")
+
+    implementation ("org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE")
+
+    //db
+    implementation("org.postgresql:postgresql:42.5.3")
+    //lombok
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    //webjars
+    implementation ("org.webjars:jquery:3.6.0")
+    implementation ("org.webjars:bootstrap:4.6.0")
+    implementation ("org.webjars:webjars-locator-core:0.46")
+    //test
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
     implementation ("javax.mail:javax.mail-api:1.6.2")
 }
