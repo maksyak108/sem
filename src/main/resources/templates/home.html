@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <style>
+    body {
+      background-image: url("/static/книги.jpeg");
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+    #real-estates-detail #author img {
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+      border-radius: 100%;
+      border: 5px solid #ecf0f1;
+      margin-bottom: 10px;
+    }
+    #real-estates-detail .sosmed-author i.fa {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #bdc3c7;
+      color: #bdc3c7;
+      padding-top: 6px;
+      margin-top: 10px;
+    }
+    #real-estates-detail .slides li img {
+      height: 450px;
+    }
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .menu-bar {
+      border-radius: 25px;
+      height: -webkit-fit-content;
+      height: -moz-fit-content;
+      height: fit-content;
+      display: inline-flex;
+      background-color: rgba(0, 0, 0, 0.4);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      padding: 0 10px;
+      margin: 50px 0 0 0;
+    }
+    .menu-bar li {
+      list-style: none;
+      color: white;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 12px 16px;
+      margin: 0 8px;
+      position: relative;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .menu-bar li::before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      transition: 0.2s;
+      border-radius: 25px;
+    }
+    .menu-bar li:hover {
+      color: black;
+    }
+    .menu-bar li:hover::before {
+      background: linear-gradient(to bottom, #e8edec, #d2d1d3);
+      box-shadow: 0px 3px 20px 0px black;
+      transform: scale(1.2);
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+
+      border: 0;
+      background-color: grey;
+      cursor: pointer;
+
+      font-family: inherit;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .btn:hover {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+<ul class="menu-bar">
+  <li><a th:href="@{/mainPage}">Главная</a></li>
+  <li><a th:href="@{/whatToRead}">Что почитать</a></li>
+  <li><a th:href="@{/genre}">Жанры</a></li>
+  <li><a th:href="@{/forKids}">Для детей</a></li>
+  <li><a th:href="@{/search}">Поиск</a></li>
+  <li><a th:href="@{/home}">Профиль</a></li>
+</ul>
+
+<div class="container" style="color: white;
+            position: absolute;
+            top: 20%;
+            left: 100px;
+            padding: 10px;">
+  <div id="main">
+    <div class="row" id="real-estates-detail">
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center" id="author">
+              <img width="200" height="200" src="/static/user.png">
+              <br>
+              Name:
+              <p><td th:text="${user.name}"></td></p>
+              Email:
+              <p><td th:text="${user.email}"></td></p>
+              <br>
+              Your id:
+              <p><td th:text="${user.id}"></td></p>
+              <a th:href="@{/review}"><button class="btn" type="submit">Оставить отзыв на прочитанную книгу</button></a>
+              <p class="sosmed-author">
+<!--              <form action="/review" method="get"><button class="btn" type="submit">Оставить отзыв на прочитанную книгу</button></form>-->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="color: white;
+            position: absolute;
+            top: 20%;
+            right: 400px;
+            padding: 10px;">
+  Ваши отзывы:
+  <br>
+    <tr th:each="r : ${review}">
+      <th>Название книги:</th>
+      <td><a th:text="${r.name}"></a></td>
+      <br>
+      <th>Отзыв:</th>
+      <td th:text="${r.description}"></td>
+      <br>
+      <th>Оценка:</th>
+      <td th:text="${r.mark}"></td>
+      <br>
+      <td>
+        <form class="form" action="/home" method="get">
+          <button class="btn" name="id" type="submit" th:value="${r.id}">Удалить отзыв</button>
+        </form>
+      </td>
+    </tr>
+</div>
+</body>
+</html>

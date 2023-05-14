@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <title>Review</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url("/static/книги.jpeg");
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+<div class="container text-center">
+<form class="form" action="/review" method="get">
+  <input name="name"  type="text" placeholder="Название книги" list="names" required>
+  <datalist id="names">
+    <option>Война и мир</option>
+    <option>Евгений Онегин</option>
+    <option>Собачье сердце</option>
+    <option>Мастер и Маргарита</option>
+    <option>Анна Каренина</option>
+  </datalist>
+  <br>
+  <input class="input" type="text" name="review" placeholder="Отзыв" required>
+  <br>
+  <input class="input" type="text" name="score" placeholder="Оценка" required pattern= "[1-5]{1}" title="Поставьте оценку от 1 до 5">
+  <br>
+  <button class="btn" type="submit" style="color: white;">Опубликовать</button>
+  <br>
+  <a th:href="@{/home}" style="color: white;">Домой</a>
+</form>
+</div>
+</body>
+</html>
