@@ -132,9 +132,9 @@ position: absolute;
             left: auto;
             padding: 10px;">
     <tr th:each="b : ${book}">
-        <a th:href="@{/BooksPDF/{name}.pdf(name=${b.name})}" target="_blank">
-            <p><img width="100" height="100" src="/static/bookPng.png"></p>
-        </a>
+<!--        <a th:href="@{/BooksPDF/{name}.pdf(name=${b.name})}" target="_blank">-->
+<!--            <p><img width="100" height="100" src="/static/bookPng.png"></p>-->
+<!--        </a>-->
         <th>Автор:</th>
         <td><a th:text="${b.author}"></a></td>
         <br>
